@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,67 +10,95 @@
             text-align: center;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
+            padding: 0;
         }
         .container {
+            width: 50%;
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
+            margin: 50px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
-        label, input {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         button {
-            padding: 10px;
-            background: #007BFF;
+            background: #007bff;
             color: white;
             border: none;
+            padding: 10px;
+            width: 85%;
             cursor: pointer;
-            width: 100%;
+            margin-top: 15px;
             border-radius: 5px;
         }
         button:hover {
             background: #0056b3;
-        }
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <h1>Marketing Calculator</h1>
     <div class="container">
-        <label for="impressions">Total Impressions:</label>
+        <h3>Engagement Rate</h3>
         <input type="number" id="impressions" placeholder="Enter total impressions">
-        
-        <label for="engagements">Total Engagements:</label>
         <input type="number" id="engagements" placeholder="Enter total engagements">
-        
         <button onclick="calculateEngagementRate()">Calculate Engagement Rate</button>
-        
-        <p id="result"></p>
+        <p id="engagementResult"></p>
+    </div>
+
+    <div class="container">
+        <h3>Click-Through Rate (CTR)</h3>
+        <input type="number" id="clicks" placeholder="Enter total clicks">
+        <input type="number" id="impressionsCTR" placeholder="Enter total impressions">
+        <button onclick="calculateCTR()">Calculate CTR</button>
+        <p id="ctrResult"></p>
+    </div>
+
+    <div class="container">
+        <h3>Return on Ad Spend (ROAS)</h3>
+        <input type="number" id="adRevenue" placeholder="Enter total revenue from ads">
+        <input type="number" id="adSpend" placeholder="Enter total ad spend">
+        <button onclick="calculateROAS()">Calculate ROAS</button>
+        <p id="roasResult"></p>
     </div>
 
     <script>
         function calculateEngagementRate() {
-            let engagements = parseFloat(document.getElementById("engagements").value);
             let impressions = parseFloat(document.getElementById("impressions").value);
-
+            let engagements = parseFloat(document.getElementById("engagements").value);
             if (impressions > 0) {
-                let engagementRate = (engagements / impressions) * 100;
-                document.getElementById("result").innerHTML = "Engagement Rate: " + engagementRate.toFixed(2) + "%";
+                let rate = (engagements / impressions) * 100;
+                document.getElementById("engagementResult").innerText = "Engagement Rate: " + rate.toFixed(2) + "%";
             } else {
-                document.getElementById("result").innerHTML = "Please enter valid numbers.";
+                alert("Enter valid numbers");
+            }
+        }
+        
+        function calculateCTR() {
+            let clicks = parseFloat(document.getElementById("clicks").value);
+            let impressions = parseFloat(document.getElementById("impressionsCTR").value);
+            if (impressions > 0) {
+                let ctr = (clicks / impressions) * 100;
+                document.getElementById("ctrResult").innerText = "Click-Through Rate: " + ctr.toFixed(2) + "%";
+            } else {
+                alert("Enter valid numbers");
+            }
+        }
+        
+        function calculateROAS() {
+            let revenue = parseFloat(document.getElementById("adRevenue").value);
+            let spend = parseFloat(document.getElementById("adSpend").value);
+            if (spend > 0) {
+                let roas = revenue / spend;
+                document.getElementById("roasResult").innerText = "ROAS: " + roas.toFixed(2);
+            } else {
+                alert("Enter valid numbers");
             }
         }
     </script>
