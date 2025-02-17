@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        label, input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Marketing Calculator</h1>
+    <div class="container">
+        <label for="impressions">Total Impressions:</label>
+        <input type="number" id="impressions" placeholder="Enter total impressions">
+        
+        <label for="engagements">Total Engagements:</label>
+        <input type="number" id="engagements" placeholder="Enter total engagements">
+        
+        <button onclick="calculateEngagementRate()">Calculate Engagement Rate</button>
+        
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateEngagementRate() {
+            let engagements = parseFloat(document.getElementById("engagements").value);
+            let impressions = parseFloat(document.getElementById("impressions").value);
+
+            if (impressions > 0) {
+                let engagementRate = (engagements / impressions) * 100;
+                document.getElementById("result").innerHTML = "Engagement Rate: " + engagementRate.toFixed(2) + "%";
+            } else {
+                document.getElementById("result").innerHTML = "Please enter valid numbers.";
+            }
+        }
+    </script>
+</body>
+</html>
